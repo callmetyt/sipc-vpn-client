@@ -27,10 +27,14 @@ npm run package
 ## 待办
 
 - SCSS 全局变量——方便样式改变
-- 添加个 UI 库？——取决于项目大小
-- 想要写成啥样？
-- preload.js 中的 channel 处理——CONSTS？
-- iconv-lite 在主线程中使用，是否需要添加到 native module——打包尝试
+- 连续流的回显处理
+- child 进程杀死
+- vpn相关文件处理
+- 管理员方式运行程序
+- tap网卡检测——设置中检测并安装
+  - 客户端修复功能
+- 添加个 UI 库——暂时不用
+- preload.js 中的 channel 处理——CONSTS
 
 ## Maintainers
 

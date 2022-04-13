@@ -34,7 +34,9 @@ ipcMain.on('ipc-example', async (event, arg) => {
 
 // shell test
 ipcMain.on('shell-cmd', async (event, arg) => {
-  const cmd = exec(isWin() ? 'dir' : 'ls', { encoding: 'binary' });
+  const cmd = exec(isWin() ? 'vpn.exe taiyatong' : 'ls', {
+    encoding: 'binary',
+  });
   let res = '';
   cmd.stderr?.on('data', (data) => {
     event.reply('shell-cmd', execResultDecode(data));
