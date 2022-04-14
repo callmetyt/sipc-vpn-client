@@ -15,7 +15,7 @@ export default () => {
             onClick={() => {
               window.electron.ipcRenderer.on('shell-cmd', (args) => {
                 console.log(args);
-                setCmdRes(''.concat(...args));
+                setCmdRes(args as string);
               });
               window.electron.ipcRenderer.shellCmd();
             }}

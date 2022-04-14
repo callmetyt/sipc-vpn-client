@@ -34,7 +34,7 @@ ipcMain.on('ipc-example', async (event, arg) => {
 
 // shell test
 ipcMain.on('shell-cmd', async (event, arg) => {
-  const cmd = exec(isWin() ? 'vpn.exe taiyatong' : 'ls', {
+  const cmd = exec(isWin() ? 'dir' : 'ls', {
     encoding: 'binary',
   });
   let res = '';
@@ -94,7 +94,9 @@ const createWindow = async () => {
     height: 728,
     icon: getAssetPath('icon.png'),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: app.isPackaged
+        ? path.join(__dirname, 'preload.js')
+        : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
   });
 
@@ -145,7 +147,6 @@ app
   .whenReady()
   .then(() => {
     createWindow();
-
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.
