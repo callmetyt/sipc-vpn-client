@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import homeIcon from './icon/homeIcon.svg';
 import internateIcon from './icon/internate.svg';
+import settingIcon from './icon/setting.svg';
+import helpIcon from './icon/help.svg';
 import './index.scss';
 
 export default () => {
@@ -22,6 +24,20 @@ export default () => {
       active: false,
       icon: internateIcon,
       text: '网络',
+    },
+    {
+      name: 'setting',
+      path: 'setting',
+      active: false,
+      icon: settingIcon,
+      text: '设置',
+    },
+    {
+      name: 'help',
+      path: 'help',
+      active: false,
+      icon: helpIcon,
+      text: '帮助',
     },
   ]);
 

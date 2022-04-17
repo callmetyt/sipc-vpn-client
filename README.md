@@ -26,12 +26,14 @@ npm run package
 
 ## 待办
 
-- SCSS 全局变量——方便样式改变
-- 连续流的回显处理
+- SCSS 全局变量 —— SCSS module
 - child 进程杀死
-- vpn相关文件处理
+  - 需要杀死后续创建的进程，例如 vpn 进程
+  - 试一试执行命令查找 vpn 进程 pid，然后杀死——windows 和 linux 命令不同
+  - 别的方法？
+- vpn 相关文件处理
 - 管理员方式运行程序
-- tap网卡检测——设置中检测并安装
+- tap 网卡检测——设置中检测并安装
   - 客户端修复功能
 - 添加个 UI 库——暂时不用
 - preload.js 中的 channel 处理——CONSTS

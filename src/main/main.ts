@@ -12,9 +12,9 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import { exec } from 'child_process';
 import MenuBuilder from './menu';
-import { execResultDecode, isWin, resolveHtmlPath } from './util';
+import { resolveHtmlPath } from './util';
+import initEvent from './mainEventListener';
 
 export default class AppUpdater {
   constructor() {
@@ -32,23 +32,8 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
-// shell test
-ipcMain.on('shell-cmd', async (event, arg) => {
-  const cmd = exec(isWin() ? 'dir' : 'ls', {
-    encoding: 'binary',
-  });
-  let res = '';
-  cmd.stderr?.on('data', (data) => {
-    event.reply('shell-cmd', execResultDecode(data));
-  });
-  cmd.stdout?.on('data', (data) => {
-    // event.reply('shell-cmd', execResultDecode(data));
-    res += execResultDecode(data);
-  });
-  cmd.stdout?.on('close', () => {
-    event.reply('shell-cmd', res);
-  });
-});
+// vpn 相关事件init
+initEvent();
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');

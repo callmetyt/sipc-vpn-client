@@ -7,7 +7,8 @@ declare global {
 export interface IpcContextBridgeApi {
   ipcRenderer: {
     myPing(): void;
-    shellCmd(): void;
+    vpnOpen(): void;
+    vpnClose(): void;
     on(
       channel: IpcChannelsList,
       func: (...args: unknown[]) => void
@@ -16,4 +17,4 @@ export interface IpcContextBridgeApi {
   };
 }
 
-export type IpcChannelsList = 'shell-cmd' | 'ipc-example';
+export type IpcChannelsList = 'vpn-open' | 'vpn-close' | 'ipc-example';
