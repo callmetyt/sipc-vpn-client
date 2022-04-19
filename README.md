@@ -26,17 +26,21 @@ npm run package
 
 ## 待办
 
-- SCSS 全局变量 —— SCSS module
-- child 进程杀死
-  - 需要杀死后续创建的进程，例如 vpn 进程
-  - 试一试执行命令查找 vpn 进程 pid，然后杀死——windows 和 linux 命令不同
-  - 别的方法？
+- ~~SCSS 全局变量~~ —— SCSS module
+- ~~child 进程杀死~~
+  - 已使用 tree-kill-promise 解决
+  - AbortController 无法终止——不知道为啥
+- vpn 开关接入 Switch 组件
+  - 需要知道何时完成开启（关闭）——vpn 字符串回显确定？
 - vpn 相关文件处理
+  - 尝试使用 electron-builder 的 extraFiles 配置
+- windows 不再进行解码？？？
 - 管理员方式运行程序
+  - electron-builder 貌似提供了 options
+  - 手动修改某些文件？
 - tap 网卡检测——设置中检测并安装
   - 客户端修复功能
-- 添加个 UI 库——暂时不用
-- preload.js 中的 channel 处理——CONSTS
+- ~~添加个 UI 库~~——暂时不用
 
 ## Maintainers
 

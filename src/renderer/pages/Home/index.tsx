@@ -1,9 +1,9 @@
 import MainContent from './components/MainContent';
-import './index.scss';
+import styles from './index.module.scss';
 
 export default () => {
   return (
-    <div className="homePage">
+    <div className={styles.homePage}>
       <header>Hi,header</header>
       <MainContent />
     </div>

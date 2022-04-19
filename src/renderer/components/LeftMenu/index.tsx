@@ -6,7 +6,7 @@ import homeIcon from './icon/homeIcon.svg';
 import internateIcon from './icon/internate.svg';
 import settingIcon from './icon/setting.svg';
 import helpIcon from './icon/help.svg';
-import './index.scss';
+import styles from './index.module.scss';
 
 export default () => {
   const navigate = useNavigate();
@@ -42,11 +42,11 @@ export default () => {
   ]);
 
   return (
-    <aside>
+    <aside className={styles.aside}>
       <ul>
         {linkGroup.map((link) => (
           <li
-            className={`${link.name} ${link.active ? 'active' : ''}`}
+            className={`${link.name} ${link.active ? styles.active : ''}`}
             onClick={() => {
               navigate(link.path);
               setLinkGroup((prev) =>

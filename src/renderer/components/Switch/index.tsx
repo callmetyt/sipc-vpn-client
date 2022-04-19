@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from 'react';
-import './index.scss';
+import styles from './index.module.scss';
 
 interface FCProps {
   onOpen: () => Promise<void>;
@@ -14,8 +14,8 @@ export default ({ onOpen, onClose }: FCProps) => {
 
   return (
     <div
-      className={`switch ${checked ? 'checked' : ''} ${
-        isLoad ? 'loading' : ''
+      className={`${styles.switch} ${checked ? styles.checked : ''} ${
+        isLoad ? styles.loading : ''
       }`}
       onClick={async () => {
         if (isLoad) return;
@@ -28,10 +28,10 @@ export default ({ onOpen, onClose }: FCProps) => {
         setChecked((prev) => !prev);
       }}
     >
-      <div className={`word ${checked ? 'checked' : ''}`}>
+      <div className={`${styles.word} ${checked ? styles.checked : ''}`}>
         {checked ? '开' : '关'}
       </div>
-      <div className={`circle ${checked ? 'checked' : ''}`} />
+      <div className={`${styles.circle} ${checked ? styles.checked : ''}`} />
     </div>
   );
 };

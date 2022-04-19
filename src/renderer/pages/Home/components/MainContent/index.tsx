@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import Switch from 'renderer/components/Switch';
 
-import './index.scss';
+import styles from './index.module.scss';
 
 export default () => {
   const [cmdRes, setCmdRes] = useState('');
 
   return (
     <>
-      <div className="mainContent">
-        <div className="action">
+      <div className={styles.mainContent}>
+        <div className={styles.action}>
           <span>VPN 网络</span>
           <button
             type="button"
@@ -53,15 +53,15 @@ export default () => {
           />
         </div>
 
-        <div className="divide" />
+        <div className={styles.divide} />
 
-        <div className="setting">
+        <div className={styles.setting}>
           <span>时长：</span>
           <span>11:22:01</span>
         </div>
       </div>
 
-      <div className="tmp">{cmdRes}</div>
+      <div className={styles.tmp}>{cmdRes}</div>
     </>
   );
 };
