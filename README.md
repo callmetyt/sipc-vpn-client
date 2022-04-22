@@ -30,18 +30,25 @@ npm run package
 - ~~child 进程杀死~~
   - 已使用 tree-kill-promise 解决
   - AbortController 无法终止——不知道为啥
-- vpn 开关接入 Switch 组件
+- ~~vpn 开关接入 Switch 组件~~
   - 需要知道何时完成开启（关闭）——vpn 字符串回显确定？
-- vpn 相关文件处理
+- ~~vpn 相关文件处理~~
   - 尝试使用 electron-builder 的 extraFiles 配置
-- windows 不再进行解码？？？
+  - 打包后的 path 问题解决下
+- ~~windows 不再进行解码！！！~~
 - 管理员方式运行程序
   - electron-builder 貌似提供了 options
   - 手动修改某些文件？
+  - 测试下到底需不需要？？？
 - tap 网卡检测——设置中检测并安装
   - 客户端修复功能
+- ipcListener 目前没有 remove，关注下可能带来的性能问题
+- mac 系统测试
+- vpn 启动信息打印
+  - 多行展示、刷新
+- 菜单栏修改
 - ~~添加个 UI 库~~——暂时不用
 
 ## Maintainers
 
-## License
+- [callmetyt](https://github.com/callmetyt)

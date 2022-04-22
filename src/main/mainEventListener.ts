@@ -1,7 +1,7 @@
 import { ChildProcess, spawn } from 'child_process';
 import { ipcMain } from 'electron';
 import kill from 'tree-kill-promise';
-import { execResultDecode, isWin } from './util';
+import { isWin, winVpnExec } from './util';
 
 function initEvent() {
   let childProcess: null | ChildProcess = null; // 启动进程
@@ -9,7 +9,7 @@ function initEvent() {
   // shell vpn开启
   ipcMain.on('vpn-open', async (event, arg) => {
     // cmd执行vpn启动命令
-    childProcess = spawn(isWin() ? 'vpn.exe taiyatong' : 'ls', {
+    childProcess = spawn(isWin() ? winVpnExec() : 'ls', {
       detached: false,
       shell: true,
     });
@@ -17,12 +17,12 @@ function initEvent() {
     childProcessPid = childProcess.pid;
     event.reply('vpn-open', `进程PID:${childProcess.pid}`);
     // err信息
-    childProcess.stderr?.on('data', (data) => {
-      event.reply('vpn-open', execResultDecode(data));
+    childProcess.stderr?.on('data', (data: Uint8Array) => {
+      event.reply('vpn-open', data.toString());
     });
     // 普通信息
-    childProcess.stdout?.on('data', (data) => {
-      event.reply('vpn-open', execResultDecode(data));
+    childProcess.stdout?.on('data', (data: Uint8Array) => {
+      event.reply('vpn-open', data.toString());
     });
     // 进程退出信息
     childProcess.stdout?.on('close', () => {
@@ -36,6 +36,7 @@ function initEvent() {
       kill(childProcessPid);
       // 清除引用
       childProcess = null;
+      event.reply('vpn-close', '已尝试关闭vpn进程');
     } else {
       // childProcess 不存在
       event.reply('vpn-close', 'error! vpn进程不存在!');

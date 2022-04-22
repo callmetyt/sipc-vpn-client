@@ -29,14 +29,4 @@ npm-debug.log.*
 *.scss.d.ts
 
 # vpn files
-libcrypto-1_1-x64.dll
-libpkcs11-helper-1.dll
-libssl-1_1-x64.dll
-lzo2.dll
-OemVista.inf
-tap0901.cat
-tap0901.sys
-tapinstall.exe
-vpn.exe
-
-taiyatong
+assets/vpnFiles/*

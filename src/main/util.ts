@@ -1,7 +1,7 @@
 /* eslint import/prefer-default-export: off, import/no-mutable-exports: off */
 import { URL } from 'url';
 import path from 'path';
-import iconv from 'iconv-lite';
+import { app } from 'electron';
 
 export let resolveHtmlPath: (htmlFileName: string) => string;
 
@@ -26,9 +26,12 @@ export const isMac = () => {
   return process.platform === 'darwin';
 };
 
-export const execResultDecode = (data: string) => {
-  if (isWin()) {
-    return iconv.decode(Buffer.from(data, 'binary'), 'cp936');
+export const winVpnExec = () => {
+  let vpnPath = '';
+  if (app.isPackaged) {
+    vpnPath = '.\\resources\\assets\\vpnFiles\\';
+  } else {
+    vpnPath = '.\\assets\\vpnFiles\\';
   }
-  return data;
+  return `${vpnPath}vpn.exe ${vpnPath}taiyatong`;
 };

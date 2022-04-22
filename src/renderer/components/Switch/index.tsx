@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from './index.module.scss';
 
 interface FCProps {
-  onOpen: () => Promise<void>;
+  onOpen: () => Promise<boolean>;
   onClose: () => Promise<void>;
 }
 
@@ -18,14 +18,28 @@ export default ({ onOpen, onClose }: FCProps) => {
         isLoad ? styles.loading : ''
       }`}
       onClick={async () => {
+        // 加载状态下不作反应
         if (isLoad) return;
 
+        // 开始加载
         setIsLoad(true);
-        if (checked) await onOpen();
-        else await onClose();
+        if (!checked) {
+          // 打开
+          const openRes = await onOpen();
+          if (openRes) {
+            // 打开成功
+            setChecked(true);
+          } else {
+            // 打开失败
+            await onClose();
+            setChecked(false);
+          }
+        } else {
+          // 关闭
+          await onClose();
+          setChecked(false);
+        }
         setIsLoad(false);
-
-        setChecked((prev) => !prev);
       }}
     >
       <div className={`${styles.word} ${checked ? styles.checked : ''}`}>
