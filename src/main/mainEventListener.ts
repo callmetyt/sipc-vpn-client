@@ -22,7 +22,12 @@ function initEvent() {
     });
     // 普通信息
     childProcess.stdout?.on('data', (data: Uint8Array) => {
-      event.reply('vpn-open', data.toString());
+      const strs = data.toString();
+      // 数据进行处理
+      const strsArr = strs.split(/(.{4}-.{2}-.{2})/);
+      for (let i = 1; i < strsArr.length; i += 2) {
+        event.reply('vpn-open', strsArr[i] + strsArr[i + 1]);
+      }
     });
     // 进程退出信息
     childProcess.stdout?.on('close', () => {
